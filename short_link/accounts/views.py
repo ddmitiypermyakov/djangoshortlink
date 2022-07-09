@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from accounts.forms import AuthUserForm, RegisterUserForm
@@ -20,6 +20,12 @@ class AuthUserLogin(LoginView):
 
     def get_success_url(self):
         return self.success_url
+
+class AuthUserLogout(LogoutView):
+    """
+    Log out the user and display the 'You are logged out' message.
+    """
+    template_name = "auth/logout.html"
 
 class UserRegister(CreateView):
     """
