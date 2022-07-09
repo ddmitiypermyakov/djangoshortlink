@@ -5,7 +5,7 @@
 {% block auth %}
 
 <h1>Авторизация</h1>
-<form action="" method='POST'>
+<form action="{% url 'home' %} " method='POST'>
     {% csrf_token %}
     {{form.as_p}}
     <button type="submit" class="btn btn-primary btn-block">Авторизация</button>
