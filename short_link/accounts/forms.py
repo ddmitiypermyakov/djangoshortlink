@@ -10,3 +10,16 @@ class AuthUserForm(AuthenticationForm, forms.ModelForm):
     class Meta:
         model = User
         fields = ("username", "password",)
+
+class RegisterUserForm(forms.ModelForm):
+    """
+    Form - class for register users
+    """
+    class Meta:
+        model = User
+        fields = ("username", "password",)
+
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
