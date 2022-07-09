@@ -6,6 +6,9 @@ def index(request):
     return render(request,"index.html")
 
 class AuthUserLogin(LoginView):
+    """
+    Display the login form and handle the login action.
+    """
     template_name = "auth/login.html"
     form_class = AuthUserForm
 

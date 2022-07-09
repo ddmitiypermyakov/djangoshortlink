@@ -4,6 +4,9 @@ from django.contrib.auth.forms import AuthenticationForm
 
 
 class AuthUserForm(AuthenticationForm, forms.ModelForm):
+    """
+    Form - class for authenticating users
+    """
     class Meta:
         model = User
         fields = ("username", "password",)
