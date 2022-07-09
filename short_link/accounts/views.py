@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect, render
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from accounts.forms import AuthUserForm, RegisterUserForm
 # Create your views here.
 from django.views.generic import CreateView, TemplateView
@@ -16,6 +16,10 @@ class AuthUserLogin(LoginView):
     """
     template_name = "auth/login.html"
     form_class = AuthUserForm
+    success_url = reverse_lazy("home")
+
+    def get_success_url(self):
+        return self.success_url
 
 class UserRegister(CreateView):
     """
