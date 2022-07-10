@@ -3,12 +3,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from accounts.forms import AuthUserForm, RegisterUserForm
-# Create your views here.
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView
 
-
-def index(request):
-    return render(request,"index.html")
 
 class AuthUserLogin(LoginView):
     """
@@ -21,11 +17,13 @@ class AuthUserLogin(LoginView):
     def get_success_url(self):
         return self.success_url
 
+
 class AuthUserLogout(LogoutView):
     """
     Log out the user and display the 'You are logged out' message.
     """
     template_name = "auth/logout.html"
+
 
 class UserRegister(CreateView):
     """
@@ -42,7 +40,7 @@ class UserRegister(CreateView):
             password = request.POST.get('password')
             password2 = request.POST.get('password2')
             if password == password2:
-                User.objects.create_user(username,email, password)
+                User.objects.create_user(username, email, password)
                 return redirect(reverse("login"))
         context = {'form': self.form_class}
-        return render(request, self.template_name,context)
+        return render(request, self.template_name, context)
