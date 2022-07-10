@@ -11,12 +11,17 @@
 </head>
 <body>
 {% include 'nav.html' %}
-<div class="col-4">
+<!--<div class="container-fluid d-flex h-100 justify-content-center align-items-center p-0">-->
+<div class="container-fluid d-flex justify-content-center">
+    <div>
     {% block auth %}
     {% endblock %}
+    </div>
 </div>
+{% if user.is_authenticated %}
 {% block body %}
     {% endblock %}
+{% endif %}
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
 </body>

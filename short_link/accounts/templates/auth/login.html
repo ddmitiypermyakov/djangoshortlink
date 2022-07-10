@@ -3,12 +3,11 @@
 {% endblock %}
 
 {% block auth %}
-
-<h1>Авторизация</h1>
+<h1>User</h1>
 <form action="" method='POST'>
     {% csrf_token %}
     {{form.as_p}}
-    <button type="submit" class="btn btn-primary btn-block">Авторизация</button>
+    <button type="submit" class="btn btn-primary btn-block">Login</button>
 </form>
 
 {% endblock %}
