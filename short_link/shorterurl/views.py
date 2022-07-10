@@ -1,10 +1,14 @@
-from django.shortcuts import render
-from django.views.generic import CreateView
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import CreateView, ListView
 from shorterurl.models import Short_link
 from shorterurl.forms import ShortForm
 
 
 class ShortUrlHome(CreateView):
+    """
+    Create Short URL
+    """
     template_name = "index.html"
     context_data = {}
     context_data['form'] = ShortForm()
@@ -27,3 +31,10 @@ class ShortUrlHome(CreateView):
             self.context_data['errors'] = form.errors
 
             return render(request, self.template_name, self.context_data)
+
+def redirect_url_view(request, short_part):
+    """
+    Redirect Short URL to Long URL
+    """
+    shortener = get_object_or_404(Short_link, short_url=short_part)
+    return HttpResponseRedirect(shortener.long_url)
