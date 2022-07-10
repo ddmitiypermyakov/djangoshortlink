@@ -1,6 +1,6 @@
 from django.urls import path
-from shorterurl.views import index
+from shorterurl.views import ShortUrlHome
 
 urlpatterns = [
-    path('', index, name='home'),
+    path('', ShortUrlHome.as_view(), name='home'),
 ]

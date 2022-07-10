@@ -3,7 +3,7 @@ from django import forms
 from shorterurl.models import Short_link
 
 
-class ShortenerForm(forms.ModelForm):
+class ShortForm(forms.ModelForm):
     long_url = forms.URLField(widget=forms.URLInput(
         attrs={"class": "form-control form-control-lg", "placeholder": "Your long URL to shorten"}))
 
