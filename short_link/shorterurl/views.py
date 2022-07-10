@@ -14,7 +14,6 @@ class ShortUrlHome(CreateView):
     context_data['form'] = ShortForm()
 
     def dispatch(self, request, *args, **kwargs):
-        print(self.context_data)
         if request.method == 'GET':
             return render(request, self.template_name, self.context_data)
         elif request.method == 'POST':
@@ -31,6 +30,17 @@ class ShortUrlHome(CreateView):
             self.context_data['errors'] = form.errors
 
             return render(request, self.template_name, self.context_data)
+
+def my_history_url(request):
+    """
+    My History Link
+    """
+    link_user = Short_link.objects.filter(user_use_id=request.user.id).order_by('created')
+    template = "history.html"
+    context= {}
+    context['link_user'] = link_user
+    context['new_url'] = request.build_absolute_uri('/')
+    return render(request, template, context)
 
 def redirect_url_view(request, short_part):
     """
