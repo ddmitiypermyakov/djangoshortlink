@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<table class="table col-4">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Short Link</th>
+      <th scope="col">Data Created</th>
+    </tr>
+  </thead>
+{% for item in link_user %}
+  <tbody>
+    <tr>
+      <th scope="row">{{item.id}}</th>
+      <td>
+        <a href="{{new_url}}{{item.short_url}}">{{new_url}}{{item.short_url}}</a>
+      </td>
+      <th scope="row">{{item.created | date:'H : i d M Y'}}</th>
+  </tbody>
+{% endfor %}
+</table>
+{% endblock %}
